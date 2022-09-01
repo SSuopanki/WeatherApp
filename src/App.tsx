@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "@emotion/styled";
+import "./App.css";
+import { Header } from "./components/Header";
+import { Oulu } from "./View/Oulu";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Helsinki } from "./View/Helsinki";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <PageBackground>
+        <AppDiv>
+          <Header />
+          <Routes>
+            <Route path="/Oulu" element={<Oulu />} />
+            <Route path="/Helsinki" element={<Helsinki />} />
+            <Route path="/" element={<Oulu />} />
+            <Route path="/*" element={<Oulu />} />
+          </Routes>
+        </AppDiv>
+      </PageBackground>
+    </Router>
   );
 }
+
+const AppDiv = styled.div`
+  height: 100vh;
+  margin: 0rem 20rem;
+`;
+
+const PageBackground = styled.div`
+  background: rgb(0, 4, 27);
+`;
 
 export default App;
